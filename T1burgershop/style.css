@@ -1,20 +1,19 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 header {
   background: #ffd900;
-  color: white;
   padding: 15px;
   display: flex;
   align-items: center;
 }
 
-header .logo {
+.logo {
   height: 50px;
   margin-right: 15px;
 }
@@ -35,13 +34,13 @@ header .logo {
   padding: 0;
 }
 
-.sidebar ul li {
+.sidebar li {
   margin: 10px 0;
 }
 
-.sidebar ul li a {
+.sidebar a {
   text-decoration: none;
-  color: #000000;
+  color: #000;
 }
 
 main {
@@ -49,21 +48,28 @@ main {
   padding: 20px;
 }
 
+
 .products {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
 }
 
 .product {
   background: #ddd;
-  padding: 20px;
-  flex: 1;
+  padding: 15px;
   text-align: center;
+}
+
+.product img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
 footer {
   background: #333;
-  color: white;
+  color: #fff;
   text-align: center;
   padding: 10px;
 }
