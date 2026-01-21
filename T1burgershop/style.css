@@ -119,3 +119,31 @@ footer {
   text-decoration: underline;
 }
 
+/* Responsive Design */
+/* ===== Form Styles (for Login / Sign-up / Profile) ===== */
+
+form {
+  max-width: 400px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+main p {
+  margin: 10px 0;
+}
