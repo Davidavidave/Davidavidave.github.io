@@ -6,15 +6,26 @@ function updateNavBar() {
   if (!authLinks) return;
   if (localStorage.getItem('burgerLoggedIn') === 'true') {
     authLinks.innerHTML = `
-      <a href="userprofile.html" id="profile-link">Profile</a>
-      <a href="#" id="logout-link">Logout</a>
+      <ul class="sidebar-auth">
+        <li><a href="userprofile.html" id="profile-link"><span class="sidebar-icon">👤</span>Profile</a></li>
+        <li><a href="#" id="logout-link"><span class="sidebar-icon">🚪</span>Logout</a></li>
+      </ul>
     `;
-    document.getElementById('logout-link').onclick = function(e) {
-      e.preventDefault();
-      logout();
-    };
+    setTimeout(() => {
+      const logoutBtn = document.getElementById('logout-link');
+      if (logoutBtn) {
+        logoutBtn.onclick = function(e) {
+          e.preventDefault();
+          logout();
+        };
+      }
+    }, 0);
   } else {
-    authLinks.innerHTML = `<a href="login.html" id="login-link">Login</a>`;
+    authLinks.innerHTML = `
+      <ul class="sidebar-auth">
+        <li><a href="login.html" id="login-link"><span class="sidebar-icon">🔑</span>Login</a></li>
+      </ul>
+    `;
   }
 }
 
