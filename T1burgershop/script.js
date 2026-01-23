@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
           logoutBtn.addEventListener("click", function(e) {
             e.preventDefault();
             localStorage.removeItem("burgerLoggedIn");
-            window.location.href = "login.html";
+            window.location.href = "index.html";
           });
         }
       }, 100);
