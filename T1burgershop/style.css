@@ -130,7 +130,7 @@ footer {
 	text-decoration: underline;
 }
 
-/* Simple yellow button style for login and signup */
+
 .btn {
 	background-color: #ffd900;
 	color: #222;
@@ -150,12 +150,11 @@ footer {
 	outline: none;
 }
 
-/* Remove sidebar icon styles to prevent emoji/icon display */
+
 .sidebar .sidebar-icon {
-	display: none !important;
+	display: none;
 }
-/* Responsive Design */
-/* ===== Form Styles (for Login / Sign-up / Profile) ===== */
+
 
 form {
 	max-width: 400px;
