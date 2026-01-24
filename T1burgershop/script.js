@@ -59,19 +59,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const signupBtn = document.querySelector("button.btn");
     if (signupBtn) {
       signupBtn.addEventListener("click", function () {
-        // For demo: just save a dummy user and redirect to login
-        const [firstNameInput, lastNameInput] = document.querySelectorAll('input[type=text]');
-        const [passwordInput] = document.querySelectorAll('input[type=password]');
-        const emailInput = document.querySelector('input[type=email]');
-        const mobileInput = document.querySelector('input[type=tel]');
-        const addressInput = document.querySelector('textarea');
+        const form = document.getElementById("signupForm");
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const mobile = document.getElementById("mobile").value.trim();
+        const address = document.getElementById("address").value.trim();
+
+        // Validate all fields
+        if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !address) {
+          alert("Please fill in all fields.");
+          return;
+        }
+        // Validate password match
+        if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return;
+        }
+
+        // Save user data
         localStorage.setItem("burgerUser", JSON.stringify({
-          email: emailInput?.value,
-          password: passwordInput?.value,
-          firstName: firstNameInput?.value,
-          lastName: lastNameInput?.value,
-          mobile: mobileInput?.value,
-          address: addressInput?.value
+          email,
+          password,
+          firstName,
+          lastName,
+          mobile,
+          address
         }));
         alert("Signup successful! Please login.");
         window.location.href = "login.html";

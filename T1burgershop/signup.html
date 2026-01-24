@@ -19,27 +19,27 @@
 
 
     <main>
-      <form>
-        <label>First Name</label>
-        <input type="text" placeholder="">
+      <form id="signupForm">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required placeholder="">
 
-        <label>Last Name</label>
-        <input type="text" placeholder="">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required placeholder="">
 
-        <label>Email Address</label>
-        <input type="email" placeholder="">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="">
 
-        <label>Password</label>
-        <input type="password" placeholder="">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="">
 
-        <label>Confirm Password</label>
-        <input type="password" placeholder="">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="">
 
-        <label>Mobile Number</label>
-        <input type="tel" placeholder="">
+        <label for="mobile">Mobile Number</label>
+        <input type="tel" id="mobile" name="mobile" required placeholder="">
 
-        <label>Home Address</label>
-        <textarea placeholder=""></textarea>
+        <label for="address">Home Address</label>
+        <textarea id="address" name="address" required placeholder=""></textarea>
 
         <button type="button" class="btn">Register</button>
       </form>
