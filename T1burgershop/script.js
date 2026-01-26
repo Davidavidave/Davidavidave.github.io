@@ -29,29 +29,29 @@ function updateNavBar() {
 function logout() {
   localStorage.removeItem('burgerLoggedIn');
   updateNavBar();
-  window.location.href = 'index.html'; // Always redirect after logout
+  window.location.href = 'index.html'; 
 }
 
-// Call on every page load
+
 document.addEventListener('DOMContentLoaded', updateNavBar);
 document.addEventListener("DOMContentLoaded", function () {
-  // Contact form logic
+  
   const form = document.getElementById("contactForm");
   if (form) {
     form.addEventListener("submit", function (event) {
-      event.preventDefault(); // prevent actual form submission
+      event.preventDefault(); 
       const name = document.getElementById("name").value.trim();
       const message = document.getElementById("message").value.trim();
       if (name && message) {
         alert("Thank you, " + name + "! Your message has been received.");
-        form.reset(); // clear the form after submission
+        form.reset(); 
       } else {
         alert("Please fill in both fields before submitting.");
       }
     });
   }
 
-  // Signup page logic
+  
   if (window.location.pathname.endsWith("signup.html")) {
     const signupBtn = document.querySelector("button.btn");
     if (signupBtn) {
@@ -65,18 +65,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const mobile = document.getElementById("mobile").value.trim();
         const address = document.getElementById("address").value.trim();
 
-        // Validate all fields
+        
         if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !address) {
           alert("Please fill in all fields.");
           return;
         }
-        // Validate password match
+        
         if (password !== confirmPassword) {
           alert("Passwords do not match.");
           return;
         }
 
-        // Save user data
+        
         localStorage.setItem("burgerUser", JSON.stringify({
           email,
           password,
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Login page logic (allow any non-empty email and password)
+  
   if (window.location.pathname.endsWith("login.html")) {
     const loginBtn = document.querySelector("button.btn");
     if (loginBtn) {
@@ -108,13 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // User profile page logic
+
   if (window.location.pathname.endsWith("userprofile.html")) {
     if (localStorage.getItem("burgerLoggedIn") !== "true") {
-      // Not logged in, redirect to login
+    
       window.location.href = "login.html";
     } else {
-      // Fill user info if available
+    
       const user = JSON.parse(localStorage.getItem("burgerUser") || '{}');
       const { firstName, lastName, email, mobile, address } = user;
       if (firstName) {
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
           `;
         }
       }
-      // Logout logic
+  
       setTimeout(function () {
         const logoutBtn = document.getElementById("logoutBtn");
         if (logoutBtn) {
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             localStorage.removeItem("burgerLoggedIn");
             updateNavLinks();
-            // Immediately update nav links on all pages
+          
             document.querySelectorAll('.nav-userprofile').forEach(link => link.style.display = "none");
             document.querySelectorAll('.nav-login').forEach(link => link.style.display = "");
             window.location.href = "index.html";
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Add this block to index.html and other pages to handle nav update after logout
+
   if (window.location.pathname.endsWith("index.html") && localStorage.getItem("burgerJustLoggedOut") === "true") {
     updateNavLinks();
     localStorage.removeItem("burgerJustLoggedOut");
