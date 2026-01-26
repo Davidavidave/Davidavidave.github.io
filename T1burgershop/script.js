@@ -1,6 +1,3 @@
-
-
-// Nav bar login/profile/logout toggle logic
 function updateNavBar() {
   const authLinks = document.getElementById('auth-links');
   if (!authLinks) return;
