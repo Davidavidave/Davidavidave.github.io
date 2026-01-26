@@ -224,12 +224,13 @@ main p {
 }
 
 .remove-btn {
-	background-color: #b80000;
+	background-color: #ffd900;
 	color: white;
 }
 
 .remove-btn:hover {
-	background-color: #a00000;
+	background-color: #b80000;
+	color: white;
 }
 
 .cart-total {
