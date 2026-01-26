@@ -36,48 +36,6 @@ function handleContactForm() {
   });
 }
 
-
-function handleSignup() {
-  var btn = document.querySelector("button.btn");
-  if (!btn) return;
-  btn.addEventListener("click", function() {
-    var firstName = document.getElementById("firstName").value.replace(/^\s+|\s+$/g, '');
-    var lastName = document.getElementById("lastName").value.replace(/^\s+|\s+$/g, '');
-    var email = document.getElementById("email").value.replace(/^\s+|\s+$/g, '');
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-    var mobile = document.getElementById("mobile").value.replace(/^\s+|\s+$/g, '');
-    var address = document.getElementById("address").value.replace(/^\s+|\s+$/g, '');
-    if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !address) {
-      alert("Please fill in all fields.");
-      return;
-    }
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-    var user = { email: email, password: password, firstName: firstName, lastName: lastName, mobile: mobile, address: address };
-    localStorage.setItem("burgerUser", JSON.stringify(user));
-    alert("Signup successful! Please login.");
-    window.location.href = "login.html";
-  });
-}
-
-function handleLogin() {
-  var btn = document.querySelector("button.btn");
-  if (!btn) return;
-  btn.addEventListener("click", function() {
-    var email = document.querySelector('input[type=email]').value;
-    var password = document.querySelector('input[type=password]').value;
-    if (email && password) {
-      localStorage.setItem("burgerLoggedIn", "true");
-      window.location.href = "userprofile.html";
-    } else {
-      alert("Please enter both email and password.");
-    }
-  });
-}
-
 function handleUserProfile() {
   if (localStorage.getItem("burgerLoggedIn") !== "true") {
     window.location.href = "login.html";
@@ -100,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
   updateNavBar();
   var path = window.location.pathname;
   if (path.indexOf("contact.html") !== -1) handleContactForm();
-  else if (path.indexOf("signup.html") !== -1) handleSignup();
-  else if (path.indexOf("login.html") !== -1) handleLogin();
   else if (path.indexOf("userprofile.html") !== -1) handleUserProfile();
   if (path.indexOf("index.html") !== -1 && localStorage.getItem("burgerJustLoggedOut") === "true") {
     updateNavBar();
