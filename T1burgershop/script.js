@@ -54,11 +54,91 @@ function handleUserProfile() {
   }
 }
 
+// Cart functions
+function getCart() {
+  return JSON.parse(localStorage.getItem('burgerCart') || '[]');
+}
+
+function saveCart(cart) {
+  localStorage.setItem('burgerCart', JSON.stringify(cart));
+}
+
+function addToCart(name, price) {
+  var cart = getCart();
+  var existingItem = cart.find(function(item) {
+    return item.name === name;
+  });
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ name: name, price: parseFloat(price.replace('Php ', '').replace(',', '')), quantity: 1 });
+  }
+  saveCart(cart);
+  alert(name + ' added to cart!');
+}
+
+function removeFromCart(index) {
+  var cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  updateCartDisplay();
+}
+
+function updateQuantity(index, quantity) {
+  var cart = getCart();
+  quantity = parseInt(quantity);
+  if (quantity <= 0) {
+    removeFromCart(index);
+  } else {
+    cart[index].quantity = quantity;
+    saveCart(cart);
+    updateCartDisplay();
+  }
+}
+
+function updateCartDisplay() {
+  var cart = getCart();
+  var tbody = document.querySelector('.cart-table tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  var total = 0;
+  cart.forEach(function(item, index) {
+    var itemTotal = item.price * item.quantity;
+    total += itemTotal;
+    var row = '<tr>' +
+      '<td>' + item.name + '</td>' +
+      '<td>Php ' + item.price.toFixed(2) + '</td>' +
+      '<td><input type="number" value="' + item.quantity + '" min="1" class="quantity" onchange="updateQuantity(' + index + ', this.value)"></td>' +
+      '<td>Php ' + itemTotal.toFixed(2) + '</td>' +
+      '<td><button class="btn remove-btn" onclick="removeFromCart(' + index + ')">Remove</button></td>' +
+      '</tr>';
+    tbody.innerHTML += row;
+  });
+  var totalElement = document.querySelector('.cart-total p strong');
+  if (totalElement) {
+    totalElement.textContent = 'Total: Php ' + total.toFixed(2);
+  }
+}
+
+function handleAddToCart() {
+  var buttons = document.querySelectorAll('.add-to-cart');
+  buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      var product = this.closest('.product');
+      var name = product.querySelector('h3').textContent;
+      var price = product.querySelector('.price').textContent;
+      addToCart(name, price);
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   updateNavBar();
   var path = window.location.pathname;
   if (path.indexOf("contact.html") !== -1) handleContactForm();
   else if (path.indexOf("userprofile.html") !== -1) handleUserProfile();
+  else if (path.indexOf("products.html") !== -1) handleAddToCart();
+  else if (path.indexOf("cart.html") !== -1) updateCartDisplay();
   if (path.indexOf("index.html") !== -1 && localStorage.getItem("burgerJustLoggedOut") === "true") {
     updateNavBar();
     localStorage.removeItem("burgerJustLoggedOut");
