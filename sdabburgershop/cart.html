@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+
+    <ul>
+      <li><a href="index.html"><img src="logo-generator.jpg" alt="Company Logo" class="logo"></a></li>
+    </ul>
+
+    <h1>Got'em Burger Shop</h1>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <ul class="sidebar-main">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="products.html">All Products</a></li>
+        <li><a href="cart.html">Shopping Cart</a></li>
+      </ul>
+      <div id="auth-links" class="sidebar-auth-links"></div>
+    </nav>
+
+    <main>
+      <h2>Shopping Cart</h2>
+
+      <section class="cart">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Cart items will be populated here by JavaScript -->
+          </tbody>
+        </table>
+
+        <div class="cart-total">
+          <p><strong>Total: Php 500.00</strong></p>
+          <a href="payment.html" class="btn checkout-btn">Proceed to Checkout</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Got'em Burger Shop | Contact: gotemburg@gmail.com or
+      <a href="contact.html" class="footer-link">Contact Us</a>.
+    </p>
+  </footer>
+  <script src="script.js" defer></script>
+</body>
+
+</html>

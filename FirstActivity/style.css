@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+nav{
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+   padding: 40px;
+
+}
+
+.center {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.lastname{
+    font-size: 28px;
+    color: 555;
+}
+
+.firstname {
+    font-size: 28px;
+    color: #555;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+ 
+table, tr, td {
+    border: 1px solid #aaa;
+}
+ 
+tr {
+    background-color: #333;
+    color: white;
+}
+ 
+tr, td {
+    padding: 10px;
+    text-align: center;
+}
+ 
+ul, ol {
+    font-size: 18px;
+}
