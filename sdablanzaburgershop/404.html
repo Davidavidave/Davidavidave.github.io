@@ -6,13 +6,9 @@
     <script type="text/javascript">
       (function(){
         var l = window.location;
-        // Preserve the original requested path + query + hash
         var original = l.pathname + l.search + l.hash;
-        // Store it in sessionStorage so index.html can restore it
         try { sessionStorage.setItem('gh-pages-redirect', original); } catch(e){}
-        // Compute the site base (keep first path segment, e.g. /sdablanzaburgershop)
         var base = l.pathname.split('/').slice(0,2).join('/') || '/';
-        // Redirect to the root of the site
         l.replace(base + '/');
       })();
     </script>
