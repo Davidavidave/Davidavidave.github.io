@@ -7,6 +7,18 @@
     <title>sdablanzaburgershop</title>
     <script type="module" crossorigin src="/sdablanzaburgershop/assets/index-BVdp4Lz0.js"></script>
     <link rel="stylesheet" crossorigin href="/sdablanzaburgershop/assets/index-KGfxoNLk.css">
+    <script>
+      
+      (function() {
+        try {
+          var stored = sessionStorage.getItem('gh-pages-redirect');
+          if (stored) {
+            sessionStorage.removeItem('gh-pages-redirect');
+            history.replaceState(null, null, stored);
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
