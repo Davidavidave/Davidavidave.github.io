@@ -6,8 +6,8 @@
     <script type="text/javascript">
       (function(){
         var l = window.location;
-        try { sessionStorage.setItem('gh-pages-redirect', l.pathname + l.search + l.hash); } catch(e){}
-        // Redirect missing pages into the site subfolder
+        var original = l.pathname + l.search + l.hash;
+        try { sessionStorage.setItem('gh-pages-redirect', original); } catch(e){}
         l.replace('/sdabburgershop/');
       })();
     </script>

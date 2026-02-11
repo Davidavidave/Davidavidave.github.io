@@ -282,3 +282,4 @@ function handleLogin() {
 document.addEventListener('DOMContentLoaded', function() {
   handleLogin();
 });
+
