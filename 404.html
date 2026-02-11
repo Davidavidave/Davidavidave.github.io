@@ -6,16 +6,11 @@
     <script type="text/javascript">
       (function(){
         var l = window.location;
-        var original = l.pathname + l.search + l.hash;
-        try { sessionStorage.setItem('gh-pages-redirect', original); } catch(e){}
+        try { sessionStorage.setItem('gh-pages-redirect', l.pathname + l.search + l.hash); } catch(e){}
+        // Redirect missing pages into the site subfolder
         l.replace('/sdabburgershop/');
       })();
     </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
-<<<<<<< HEAD
-=======
-
->>>>>>> a597c69 (New commit 11/02/26)
