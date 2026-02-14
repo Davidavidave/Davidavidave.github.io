@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //handle signup form
 function handleSignup() {
+  if (!document.getElementById("firstName")) return;
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
@@ -173,7 +174,7 @@ function handleSignup() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  if (document.title === "Sign Up") handleSignup();
+  handleSignup();
 });
 
 //handle payment form
@@ -266,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //login
 function handleLogin() {
+  if (document.getElementById("firstName")) return; // don't run on signup
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
@@ -287,6 +289,6 @@ function handleLogin() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  if (document.title === "Login") handleLogin();
+  handleLogin();
 });
 
