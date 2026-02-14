@@ -6,7 +6,6 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  
   useEffect(() => {
     const savedUser = localStorage.getItem("burgerUser");
     const savedLogin = localStorage.getItem("burgerLoggedIn");
@@ -16,7 +15,6 @@ export function AuthProvider({ children }) {
   }, []);
 
   const signup = (data) => {
-    
     setUser(data);
     localStorage.setItem("burgerUser", JSON.stringify(data));
     setIsLoggedIn(false);
@@ -30,7 +28,7 @@ export function AuthProvider({ children }) {
       setUser(storedUser);
       setIsLoggedIn(true);
       localStorage.setItem("burgerLoggedIn", "true");
-      return true; 
+      return true; // Critical for Login.jsx logic
     }
     return false;
   };
@@ -38,7 +36,7 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setIsLoggedIn(false);
     localStorage.setItem("burgerLoggedIn", "false");
-    
+    setUser(null);
   };
 
   return (

@@ -19,28 +19,25 @@ export default function Signup() {
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
+    // This line ONLY works if the input has a 'name' attribute
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Stops the 404/Reload error
     const { firstName, lastName, email, password, confirmPassword, mobile, address } = form;
 
-    
     if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !address) {
-      setError("All fields are required.");
+      setError("Please fill all fields.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError("Passwords don't match.");
       return;
     }
 
-   
     signup(form);
-
-    
     navigate("/login");
   };
 
@@ -49,27 +46,36 @@ export default function Signup() {
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         {Object.keys(form).map((field) => (
-          <div key={field} style={{ marginBottom: "10px" }}>
-            <label style={{ display: "block", textTransform: "capitalize" }}>
+          <div key={field} style={{ marginBottom: "15px" }}>
+            <label htmlFor={field} style={{ display: "block", textTransform: "capitalize" }}>
               {field.replace(/([A-Z])/g, ' $1')}
             </label>
             {field === "address" ? (
-              <textarea name={field} value={form[field]} onChange={handleChange} required />
+              <textarea 
+                id={field}
+                name={field} 
+                value={form[field]} 
+                onChange={handleChange} 
+                required 
+              />
             ) : (
               <input
-                type={field.includes("password") ? "password" : "text"}
+                id={field}
                 name={field}
+                type={field.includes("password") ? "password" : "text"}
                 value={form[field]}
                 onChange={handleChange}
+                autoComplete={field === "email" ? "email" : "on"}
                 required
               />
             )}
           </div>
         ))}
+
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Register</button>
       </form>
-      <Link to="/login">Already have an account? Login</Link>
+      <Link to="/login">Back to login</Link>
     </section>
   );
 }

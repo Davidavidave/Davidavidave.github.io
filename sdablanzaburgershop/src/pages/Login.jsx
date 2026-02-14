@@ -11,39 +11,40 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
-    // 1. PREVENT the browser from trying to find a real "login" page on the server
-    e.preventDefault(); 
+    e.preventDefault(); // Prevents 404/Reload
     setError("");
 
-    // 2. RUN our local logic instead
-    const success = login(email, password);
-
-    if (success) {
+    if (login(email, password)) {
       navigate("/profile"); 
     } else {
-      setError("Invalid email or password.");
+      setError("Invalid credentials. Try signing up again.");
     }
   };
 
   return (
     <section className="auth-page">
       <h1>User Login</h1>
-      {/* Ensure there is NO 'action' attribute here */}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
+        <div style={{ marginBottom: "10px" }}>
+          <label htmlFor="email">Email</label>
           <input
+            id="email"
+            name="email"
             type="email"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label>Password</label>
+        <div style={{ marginBottom: "10px" }}>
+          <label htmlFor="password">Password</label>
           <input
+            id="password"
+            name="password"
             type="password"
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -53,6 +54,7 @@ export default function Login() {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Login</button>
       </form>
+
       <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
     </section>
   );

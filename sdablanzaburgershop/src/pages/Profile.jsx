@@ -6,35 +6,27 @@ export default function Profile() {
   const { user, isLoggedIn, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  
   if (!isLoggedIn || !user) {
     return <Navigate to="/login" />;
   }
 
   const handleLogout = () => {
     logout();
-    navigate("/login"); 
+    navigate("/login");
   };
 
   return (
-    <section className="profile-container">
-      <h1>Welcome, {user.firstName}!</h1>
-      
-      <div className="profile-card" style={{ border: "1px solid #ccc", padding: "20px", borderRadius: "8px" }}>
-        <h3>User Information</h3>
-        <hr />
-        <p><strong>Full Name:</strong> {user.firstName} {user.lastName}</p>
+    <section>
+      <h1>User Profile</h1>
+      <div style={{ border: "1px solid #ddd", padding: "15px", borderRadius: "5px" }}>
+        <p><strong>First Name:</strong> {user.firstName}</p>
+        <p><strong>Last Name:</strong> {user.lastName}</p>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Mobile:</strong> {user.mobile}</p>
-        <p><strong>Shipping Address:</strong> {user.address}</p>
+        <p><strong>Address:</strong> {user.address}</p>
       </div>
 
-      <button 
-        onClick={handleLogout} 
-        style={{ marginTop: "20px", backgroundColor: "#ff4d4d", color: "white", padding: "10px 20px", border: "none", borderRadius: "5px", cursor: "pointer" }}
-      >
-        Logout
-      </button>
+      <button onClick={handleLogout} style={{ marginTop: "20px" }}>Logout</button>
     </section>
   );
 }
