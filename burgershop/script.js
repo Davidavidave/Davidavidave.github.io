@@ -150,11 +150,13 @@ document.addEventListener('DOMContentLoaded', function() {
 //handle signup form
 function handleSignup() {
   if (!document.getElementById("firstName")) return;
+  alert("handleSignup called");
   var form = document.getElementById("signupForm");
   if (form) form.addEventListener('submit', function(e) { e.preventDefault(); });
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
+    alert("Signup button clicked");
     var firstName = document.getElementById("firstName").value.replace(/^\s+|\s+$/g, '');
     var lastName = document.getElementById("lastName").value.replace(/^\s+|\s+$/g, '');
     var email = document.getElementById("email").value.replace(/^\s+|\s+$/g, '');
@@ -264,11 +266,13 @@ function updateOrderSummary() {
 //login
 function handleLogin() {
   if (document.getElementById("firstName")) return; // don't run on signup
+  alert("handleLogin called");
   var form = document.querySelector('form');
   if (form) form.addEventListener('submit', function(e) { e.preventDefault(); });
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
+    alert("Login button clicked");
     var email = document.querySelector('input[type=email]').value.trim();
     var password = document.querySelector('input[type=password]').value;
     if (!email || !password) {
