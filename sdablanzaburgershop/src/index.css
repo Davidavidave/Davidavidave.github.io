@@ -88,6 +88,27 @@ header {
 	outline: none;
 }
 
+.sidebar-profile {
+	padding: 0 20px;
+}
+
+.sidebar-profile a {
+	display: block;
+	padding: 12px 20px;
+	color: #222;
+	text-decoration: none;
+	border-radius: 6px;
+	font-weight: 500;
+	transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-profile a:hover,
+.sidebar-profile a:focus {
+	background: #ffd900;
+	color: #b80000;
+	outline: none;
+}
+
 main {
 	flex: 1;
 	padding: 20px;

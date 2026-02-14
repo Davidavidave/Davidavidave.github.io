@@ -13,12 +13,12 @@ export default function Sidebar() {
         <li><Link to="/contact">Contact Us</Link></li>
         <li><Link to="/products">All Products</Link></li>
         <li><Link to="/cart">Shopping Cart</Link></li>
+        {isLoggedIn && <li><Link to="/profile">Profile</Link></li>}
       </ul>
       <div id="auth-links" className="sidebar-auth-links" style={{ marginTop: 'auto', padding: '12px 20px' }}>
         {isLoggedIn ? (
           <div>
-            <Link to="/profile" className="btn">Profile</Link>
-            <button onClick={logout} className="btn" style={{ marginLeft: '10px' }}>Logout</button>
+            <button onClick={logout} className="btn">Logout</button>
           </div>
         ) : (
           <Link to="/login" className="btn">Login</Link>
