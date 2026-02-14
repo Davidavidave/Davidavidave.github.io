@@ -142,15 +142,19 @@ document.addEventListener('DOMContentLoaded', function() {
     updateNavBar();
     localStorage.removeItem("burgerJustLoggedOut");
   }
+  handleSignup();
+  handleLogin();
+  handlePaymentForm();
 });
 
 //handle signup form
 function handleSignup() {
   if (!document.getElementById("firstName")) return;
+  var form = document.getElementById("signupForm");
+  if (form) form.addEventListener('submit', function(e) { e.preventDefault(); });
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
-    alert("Signup button clicked"); // temporary debug
     var firstName = document.getElementById("firstName").value.replace(/^\s+|\s+$/g, '');
     var lastName = document.getElementById("lastName").value.replace(/^\s+|\s+$/g, '');
     var email = document.getElementById("email").value.replace(/^\s+|\s+$/g, '');
@@ -172,10 +176,6 @@ function handleSignup() {
     window.location.href = "login.html";
   });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  handleSignup();
-});
 
 //handle payment form
 function handlePaymentForm() {
@@ -261,17 +261,14 @@ function updateOrderSummary() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  handlePaymentForm();
-});
-
 //login
 function handleLogin() {
   if (document.getElementById("firstName")) return; // don't run on signup
+  var form = document.querySelector('form');
+  if (form) form.addEventListener('submit', function(e) { e.preventDefault(); });
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
-    alert("Login button clicked"); // temporary debug
     var email = document.querySelector('input[type=email]').value.trim();
     var password = document.querySelector('input[type=password]').value;
     if (!email || !password) {
@@ -287,8 +284,4 @@ function handleLogin() {
     }
   });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  handleLogin();
-});
 
