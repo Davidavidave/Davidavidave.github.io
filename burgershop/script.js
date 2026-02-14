@@ -261,21 +261,26 @@ function updateOrderSummary() {
   }
 }
 
-//login
+
 function handleLogin() {
-  if (document.getElementById("firstName")) return; // don't run on signup
-  var form = document.querySelector('form');
-  if (form) form.addEventListener('submit', function(e) { e.preventDefault(); });
-  var btn = document.querySelector("button.btn");
-  if (!btn) return;
-  btn.addEventListener("click", function() {
-    var email = document.querySelector('input[type=email]').value.trim();
-    var password = document.querySelector('input[type=password]').value;
+  var form = document.getElementById("loginForm");
+
+  
+  if (!form) return;
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    var email = document.getElementById("loginEmail").value.trim();
+    var password = document.getElementById("loginPassword").value;
+
     if (!email || !password) {
       alert("Please enter both email and password.");
       return;
     }
+
     var user = JSON.parse(localStorage.getItem("burgerUser") || '{}');
+
     if (user.email === email && user.password === password) {
       localStorage.setItem("burgerLoggedIn", "true");
       window.location.href = "userprofile.html";
@@ -284,4 +289,5 @@ function handleLogin() {
     }
   });
 }
+
 

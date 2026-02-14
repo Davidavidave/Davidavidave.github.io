@@ -7,7 +7,6 @@
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
-  
 </head>
 
 <body>
@@ -18,19 +17,23 @@
 
   <div class="container">
     <main>
-      <form>
+
+      
+      <form id="loginForm">
+
         <label>Email Address</label>
-        <input type="email" placeholder="" required>
+        <input type="email" id="loginEmail" required>
 
         <label>Password</label>
-        <input type="password" placeholder="" required>
+        <input type="password" id="loginPassword" required>
 
-        <button type="button" class="btn">Login </button>
+        <button type="submit" class="btn">Login</button>
 
       </form>
 
       <p>Don't have an account?</p>
       <a href="signup.html">Create an account</a>
+
     </main>
   </div>
 
@@ -41,4 +44,3 @@
 </body>
 
 </html>
-
