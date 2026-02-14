@@ -149,6 +149,7 @@ function handleSignup() {
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
+    alert("Signup button clicked"); // temporary debug
     var firstName = document.getElementById("firstName").value.replace(/^\s+|\s+$/g, '');
     var lastName = document.getElementById("lastName").value.replace(/^\s+|\s+$/g, '');
     var email = document.getElementById("email").value.replace(/^\s+|\s+$/g, '');
@@ -172,7 +173,7 @@ function handleSignup() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  if (window.location.pathname.indexOf("signup.html") !== -1) handleSignup();
+  if (document.title === "Sign Up") handleSignup();
 });
 
 //handle payment form
@@ -268,6 +269,7 @@ function handleLogin() {
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
+    alert("Login button clicked"); // temporary debug
     var email = document.querySelector('input[type=email]').value.trim();
     var password = document.querySelector('input[type=password]').value;
     if (!email || !password) {
@@ -285,6 +287,6 @@ function handleLogin() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  if (window.location.pathname.indexOf("login.html") !== -1) handleLogin();
+  if (document.title === "Login") handleLogin();
 });
 
