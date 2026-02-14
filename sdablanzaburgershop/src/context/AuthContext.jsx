@@ -1,50 +1,50 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('burgerUser') || 'null');
-    } catch (e) {
-      return null;
-    }
-  });
+  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return localStorage.getItem('burgerLoggedIn') === 'true';
-  });
 
   useEffect(() => {
-    try {
-      if (user) {
-        localStorage.setItem('burgerUser', JSON.stringify(user));
-      } else {
-        localStorage.removeItem('burgerUser');
-      }
-    } catch (e) {
-      // ignore
+    const savedUser = localStorage.getItem("burgerUser");
+    const savedLogin = localStorage.getItem("burgerLoggedIn");
+
+    if (savedUser) setUser(JSON.parse(savedUser));
+    if (savedLogin === "true") setIsLoggedIn(true);
+  }, []);
+
+  
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("burgerUser", JSON.stringify(user));
     }
   }, [user]);
 
+  
   useEffect(() => {
-    try {
-      localStorage.setItem('burgerLoggedIn', isLoggedIn ? 'true' : 'false');
-    } catch (e) {
-      // ignore
-    }
+    localStorage.setItem("burgerLoggedIn", isLoggedIn ? "true" : "false");
   }, [isLoggedIn]);
 
-  const signup = (userData) => {
-    setUser(userData);
-    setIsLoggedIn(false); // signup doesn't log in immediately
+  const signup = (data) => {
+    setUser(data);
+    setIsLoggedIn(false);
   };
 
   const login = (email, password) => {
-    if (user && user.email === email && user.password === password) {
+    const storedUser = JSON.parse(localStorage.getItem("burgerUser"));
+
+    if (
+      storedUser &&
+      storedUser.email === email &&
+      storedUser.password === password
+    ) {
+      setUser(storedUser);
       setIsLoggedIn(true);
       return true;
     }
+
     return false;
   };
 
@@ -53,7 +53,9 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, signup, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isLoggedIn, signup, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
