@@ -11,13 +11,13 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents 404/Reload
+    e.preventDefault(); // Stops the browser from searching for a physical /login file
     setError("");
 
     if (login(email, password)) {
       navigate("/profile"); 
     } else {
-      setError("Invalid credentials. Try signing up again.");
+      setError("Invalid email or password.");
     }
   };
 
@@ -26,9 +26,9 @@ export default function Login() {
       <h1>User Login</h1>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="login-email">Email</label>
           <input
-            id="email"
+            id="login-email"
             name="email"
             type="email"
             autoComplete="email"
@@ -39,9 +39,9 @@ export default function Login() {
         </div>
 
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="login-password">Password</label>
           <input
-            id="password"
+            id="login-password"
             name="password"
             type="password"
             autoComplete="current-password"
@@ -54,8 +54,7 @@ export default function Login() {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Login</button>
       </form>
-
-      <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+      <p>Need an account? <Link to="/signup">Sign up</Link></p>
     </section>
   );
 }

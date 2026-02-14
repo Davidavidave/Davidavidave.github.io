@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
       setUser(storedUser);
       setIsLoggedIn(true);
       localStorage.setItem("burgerLoggedIn", "true");
-      return true; // Critical for Login.jsx logic
+      return true; // Login.jsx needs this to navigate!
     }
     return false;
   };

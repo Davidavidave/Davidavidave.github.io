@@ -19,12 +19,13 @@ export default function Signup() {
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    // This line ONLY works if the input has a 'name' attribute
+    // Crucial: [e.target.name] only works if the input has a 'name' attribute
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Stops the 404/Reload error
+    e.preventDefault(); // Prevents the 404/Reload error
+    
     const { firstName, lastName, email, password, confirmPassword, mobile, address } = form;
 
     if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !address) {
@@ -47,6 +48,7 @@ export default function Signup() {
       <form onSubmit={handleSubmit}>
         {Object.keys(form).map((field) => (
           <div key={field} style={{ marginBottom: "15px" }}>
+            {/* id and htmlFor fix the "No label associated" error */}
             <label htmlFor={field} style={{ display: "block", textTransform: "capitalize" }}>
               {field.replace(/([A-Z])/g, ' $1')}
             </label>
