@@ -172,7 +172,7 @@ function handleSignup() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  handleSignup();
+  if (window.location.pathname.indexOf("signup.html") !== -1) handleSignup();
 });
 
 //handle payment form
@@ -268,18 +268,23 @@ function handleLogin() {
   var btn = document.querySelector("button.btn");
   if (!btn) return;
   btn.addEventListener("click", function() {
-    var email = document.querySelector('input[type=email]').value;
+    var email = document.querySelector('input[type=email]').value.trim();
     var password = document.querySelector('input[type=password]').value;
-    if (email && password) {
+    if (!email || !password) {
+      alert("Please enter both email and password.");
+      return;
+    }
+    var user = JSON.parse(localStorage.getItem("burgerUser") || '{}');
+    if (user.email === email && user.password === password) {
       localStorage.setItem("burgerLoggedIn", "true");
       window.location.href = "userprofile.html";
     } else {
-      alert("Please enter both email and password.");
+      alert("Invalid email or password.");
     }
   });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  handleLogin();
+  if (window.location.pathname.indexOf("login.html") !== -1) handleLogin();
 });
 
