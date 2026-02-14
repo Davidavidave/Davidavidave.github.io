@@ -8,7 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const distDir = path.join(__dirname, 'dist');
-const targetDir = path.join(__dirname, 'sdablanzaburgershop');
+const repoRoot = path.join(__dirname, '..');
+const targetDir = repoRoot;
 
 function copyRecursiveSync(src, dest) {
   const exists = fs.existsSync(src);
@@ -27,11 +28,10 @@ function copyRecursiveSync(src, dest) {
 
 
 
-console.log('Copying dist files to sdablanzaburgershop folder...');
-if (fs.existsSync(targetDir)) {
-  fs.rmSync(targetDir, { recursive: true, force: true });
-}
-fs.mkdirSync(targetDir);
+console.log('Building the project...');
+execSync('npm run build', { stdio: 'inherit' });
+
+console.log('Copying dist files to repository root...');
 fs.readdirSync(distDir).forEach(item => {
   const srcPath = path.join(distDir, item);
   const destPath = path.join(targetDir, item);
