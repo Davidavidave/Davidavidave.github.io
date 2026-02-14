@@ -19,13 +19,12 @@ export default function Signup() {
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    // Crucial: [e.target.name] only works if the input has a 'name' attribute
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the 404/Reload error
-    
+    e.preventDefault();
+
     const { firstName, lastName, email, password, confirmPassword, mobile, address } = form;
 
     if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !address) {
@@ -48,17 +47,21 @@ export default function Signup() {
       <form onSubmit={handleSubmit}>
         {Object.keys(form).map((field) => (
           <div key={field} style={{ marginBottom: "15px" }}>
-            {/* id and htmlFor fix the "No label associated" error */}
-            <label htmlFor={field} style={{ display: "block", textTransform: "capitalize" }}>
-              {field.replace(/([A-Z])/g, ' $1')}
+            <label
+              htmlFor={field}
+              style={{ display: "block", textTransform: "capitalize" }}
+            >
+              {field.replace(/([A-Z])/g, " $1")}
             </label>
+
             {field === "address" ? (
-              <textarea 
+              <textarea
                 id={field}
-                name={field} 
-                value={form[field]} 
-                onChange={handleChange} 
-                required 
+                name={field}
+                value={form[field]}
+                onChange={handleChange}
+                autoComplete="street-address"
+                required
               />
             ) : (
               <input
@@ -67,7 +70,21 @@ export default function Signup() {
                 type={field.includes("password") ? "password" : "text"}
                 value={form[field]}
                 onChange={handleChange}
-                autoComplete={field === "email" ? "email" : "on"}
+                autoComplete={
+                  field === "email"
+                    ? "email"
+                    : field === "password"
+                    ? "new-password"
+                    : field === "confirmPassword"
+                    ? "new-password"
+                    : field === "firstName"
+                    ? "given-name"
+                    : field === "lastName"
+                    ? "family-name"
+                    : field === "mobile"
+                    ? "tel"
+                    : "on"
+                }
                 required
               />
             )}
@@ -77,7 +94,9 @@ export default function Signup() {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Register</button>
       </form>
-      <Link to="/login">Back to login</Link>
+      <p>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
     </section>
   );
 }

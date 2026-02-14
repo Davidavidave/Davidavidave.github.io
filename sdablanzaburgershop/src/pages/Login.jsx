@@ -11,11 +11,11 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Stops the browser from searching for a physical /login file
+    e.preventDefault();
     setError("");
 
     if (login(email, password)) {
-      navigate("/profile"); 
+      navigate("/profile");
     } else {
       setError("Invalid email or password.");
     }
@@ -54,7 +54,9 @@ export default function Login() {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Login</button>
       </form>
-      <p>Need an account? <Link to="/signup">Sign up</Link></p>
+      <p>
+        Need an account? <Link to="/signup">Sign up</Link>
+      </p>
     </section>
   );
 }
