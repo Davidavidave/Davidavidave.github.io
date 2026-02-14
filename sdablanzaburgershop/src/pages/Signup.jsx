@@ -24,67 +24,52 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { firstName, lastName, email, password, confirmPassword, mobile, address } = form;
 
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-      mobile,
-      address,
-    } = form;
-
-    if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !password ||
-      !confirmPassword ||
-      !mobile ||
-      !address
-    ) {
-      setError("Fill all fields.");
+    
+    if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !address) {
+      setError("All fields are required.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords don't match.");
+      setError("Passwords do not match.");
       return;
     }
 
-    signup({ firstName, lastName, email, password, mobile, address });
+   
+    signup(form);
 
+    
     navigate("/login");
   };
 
   return (
     <section className="auth-page">
       <h1>Sign Up</h1>
-
       <form onSubmit={handleSubmit}>
         {Object.keys(form).map((field) => (
-          <div key={field}>
-            <label>{field}</label>
+          <div key={field} style={{ marginBottom: "10px" }}>
+            <label style={{ display: "block", textTransform: "capitalize" }}>
+              {field.replace(/([A-Z])/g, ' $1')}
+            </label>
             {field === "address" ? (
-              <textarea name={field} value={form[field]} onChange={handleChange} />
+              <textarea name={field} value={form[field]} onChange={handleChange} required />
             ) : (
               <input
                 type={field.includes("password") ? "password" : "text"}
                 name={field}
                 value={form[field]}
                 onChange={handleChange}
+                required
               />
             )}
           </div>
         ))}
-
         {error && <p style={{ color: "red" }}>{error}</p>}
-
         <button type="submit">Register</button>
       </form>
-
-      <Link to="/login">Back to login</Link>
+      <Link to="/login">Already have an account? Login</Link>
     </section>
   );
 }

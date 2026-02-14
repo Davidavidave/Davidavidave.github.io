@@ -6,7 +6,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
+  
   useEffect(() => {
     const savedUser = localStorage.getItem("burgerUser");
     const savedLogin = localStorage.getItem("burgerLoggedIn");
@@ -15,47 +15,34 @@ export function AuthProvider({ children }) {
     if (savedLogin === "true") setIsLoggedIn(true);
   }, []);
 
-  
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("burgerUser", JSON.stringify(user));
-    }
-  }, [user]);
-
-  
-  useEffect(() => {
-    localStorage.setItem("burgerLoggedIn", isLoggedIn ? "true" : "false");
-  }, [isLoggedIn]);
-
   const signup = (data) => {
+    
     setUser(data);
+    localStorage.setItem("burgerUser", JSON.stringify(data));
     setIsLoggedIn(false);
+    localStorage.setItem("burgerLoggedIn", "false");
   };
 
   const login = (email, password) => {
     const storedUser = JSON.parse(localStorage.getItem("burgerUser"));
 
-    if (
-      storedUser &&
-      storedUser.email === email &&
-      storedUser.password === password
-    ) {
+    if (storedUser && storedUser.email === email && storedUser.password === password) {
       setUser(storedUser);
       setIsLoggedIn(true);
-      return true;
+      localStorage.setItem("burgerLoggedIn", "true");
+      return true; 
     }
-
     return false;
   };
 
   const logout = () => {
     setIsLoggedIn(false);
+    localStorage.setItem("burgerLoggedIn", "false");
+    
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, isLoggedIn, signup, login, logout }}
-    >
+    <AuthContext.Provider value={{ user, isLoggedIn, signup, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
